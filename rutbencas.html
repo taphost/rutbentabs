@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+
+<html lang="it">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Calcolatore per le Tavole di Rutilio Benincasa</title>
+
+    <style>
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+        
+
+        body {
+
+            font-family: 'Times New Roman', Times, serif;
+
+            background-color: #fff3c9;
+
+            min-height: 100vh;
+
+            color: #333;
+
+            padding: 20px;
+
+        }
+
+        
+
+        .container {
+
+            max-width: 800px;
+
+            margin: 0 auto;
+
+            background: #fef9e7;
+
+            border: 3px solid #8b0000;
+
+            padding: 40px;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        /* Effetto pagina di vecchio libro */
+
+        .container::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            right: 0;
+
+            bottom: 0;
+
+            background: 
+
+                /* Texture carta a righe sottili */
+
+                repeating-linear-gradient(
+
+                    0deg,
+
+                    transparent,
+
+                    transparent 2px,
+
+                    rgba(139, 69, 19, 0.02) 2px,
+
+                    rgba(139, 69, 19, 0.02) 4px
+
+                ),
+
+                /* Texture orizzontale */
+
+                repeating-linear-gradient(
+
+                    90deg,
+
+                    transparent,
+
+                    transparent 2px,
+
+                    rgba(139, 69, 19, 0.015) 2px,
+
+                    rgba(139, 69, 19, 0.015) 4px
+
+                ),
+
+                /* Sfumature di invecchiamento */
+
+                radial-gradient(ellipse at 20% 30%, rgba(210, 180, 140, 0.3) 0%, transparent 50%),
+
+                radial-gradient(ellipse at 80% 70%, rgba(222, 184, 135, 0.25) 0%, transparent 50%),
+
+                radial-gradient(ellipse at 50% 90%, rgba(205, 170, 125, 0.2) 0%, transparent 40%),
+
+                radial-gradient(ellipse at 10% 80%, rgba(188, 143, 143, 0.15) 0%, transparent 35%),
+
+                /* Macchie casuali sparse */
+
+                radial-gradient(circle at 15% 25%, rgba(139, 69, 19, 0.08) 0%, transparent 1%),
+
+                radial-gradient(circle at 75% 15%, rgba(160, 82, 45, 0.06) 0%, transparent 0.8%),
+
+                radial-gradient(circle at 85% 45%, rgba(139, 69, 19, 0.07) 0%, transparent 1.2%),
+
+                radial-gradient(circle at 25% 65%, rgba(160, 82, 45, 0.05) 0%, transparent 0.9%),
+
+                radial-gradient(circle at 90% 80%, rgba(139, 69, 19, 0.09) 0%, transparent 1.5%),
+
+                radial-gradient(circle at 45% 35%, rgba(160, 82, 45, 0.04) 0%, transparent 0.7%),
+
+                radial-gradient(circle at 60% 75%, rgba(139, 69, 19, 0.06) 0%, transparent 1.1%),
+
+                radial-gradient(circle at 30% 90%, rgba(160, 82, 45, 0.08) 0%, transparent 1.3%),
+
+                radial-gradient(circle at 70% 55%, rgba(139, 69, 19, 0.05) 0%, transparent 0.8%),
+
+                radial-gradient(circle at 5% 50%, rgba(160, 82, 45, 0.07) 0%, transparent 1%),
+
+                /* Bordi scuriti e consumati */
+
+                linear-gradient(to right, rgba(139, 69, 19, 0.15) 0%, transparent 5%, transparent 95%, rgba(139, 69, 19, 0.15) 100%),
+
+                linear-gradient(to bottom, rgba(139, 69, 19, 0.15) 0%, transparent 5%, transparent 95%, rgba(139, 69, 19, 0.15) 100%);
+
+            pointer-events: none;
+
+            z-index: 1;
+
+        }
+
+        
+
+        /* Assicura che il contenuto sia sopra l'effetto */
+
+        .container > * {
+
+            position: relative;
+
+            z-index: 2;
+
+        }
+
+        
+
+        .header {
+
+            text-align: center;
+
+            margin-bottom: 40px;
+
+            border-bottom: 3px solid #8b0000;
+
+            padding-bottom: 30px;
+
+        }
+
+        
+
+        .header h1 {
+
+            color: #8b0000;
+
+            font-size: 2.5rem;
+
+            margin-bottom: 20px;
+
+            font-weight: normal;
+
+            letter-spacing: 2px;
+
+        }
+
+        
+
+        .header p {
+
+            color: #333;
+
+            font-size: 1.1rem;
+
+            line-height: 1.8;
+
+            font-style: italic;
+
+        }
+
+        
+
+        .calculator-section {
+
+            background: #facf7f;
+
+            border: 3px solid #8b0000;
+
+            padding: 30px;
+
+            margin-bottom: 30px;
+
+        }
+
+        
+
+        .calculator-section h2 {
+
+            color: #8b0000;
+
+            font-size: 2rem;
+
+            margin-bottom: 25px;
+
+            font-weight: normal;
+
+            border-bottom: 2px solid #8b0000;
+
+            padding-bottom: 10px;
+
+        }
+
+        
+
+        .form-group {
+
+            margin-bottom: 25px;
+
+        }
+
+        
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-weight: bold;
+
+            color: #8b0000;
+
+            font-size: 1.1rem;
+
+        }
+
+        
+
+        .form-group input, .form-group select {
+
+            width: 100%;
+
+            padding: 12px 15px;
+
+            border: 2px solid #8b0000;
+
+            background: #fef9e7;
+
+            font-size: 1rem;
+
+            font-family: 'Times New Roman', Times, serif;
+
+            color: #333;
+
+        }
+
+        
+
+        .form-group input:focus, .form-group select:focus {
+
+            outline: none;
+
+            background: #fff;
+
+        }
+
+        
+
+        .form-group small {
+
+            color: #666;
+
+            font-size: 0.9em;
+
+            font-style: italic;
+
+        }
+
+        
+
+        .form-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 20px;
+
+        }
+
+        
+
+        .calculate-btn {
+
+            background: #8b0000;
+
+            color: #fff3c9;
+
+            padding: 15px 40px;
+
+            border: 2px solid #5a0000;
+
+            font-size: 1.2rem;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            display: block;
+
+            margin: 30px auto;
+
+            font-family: 'Times New Roman', Times, serif;
+
+            letter-spacing: 1px;
+
+        }
+
+        
+
+        .calculate-btn:hover {
+
+            background: #5a0000;
+
+        }
+
+        
+
+        .results-section {
+
+            background: #fef9e7;
+
+            border: 3px solid #8b0000;
+
+            padding: 30px;
+
+            margin-top: 30px;
+
+            display: none;
+
+        }
+
+        
+
+        .results-section.show {
+
+            display: block;
+
+        }
+
+        
+
+        .results-section h2 {
+
+            color: #8b0000;
+
+            font-size: 2rem;
+
+            margin-bottom: 25px;
+
+            font-weight: normal;
+
+            border-bottom: 2px solid #8b0000;
+
+            padding-bottom: 10px;
+
+        }
+
+        
+
+        .result-card {
+
+            background: #facf7f;
+
+            border-left: 5px solid #8b0000;
+
+            border-right: 5px solid #8b0000;
+
+            padding: 25px;
+
+            margin: 20px 0;
+
+        }
+
+        
+
+        .result-card h3 {
+
+            color: #8b0000;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 20px;
+
+            font-weight: normal;
+
+        }
+
+        
+
+        .result-numbers {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 15px;
+
+            margin: 20px 0;
+
+        }
+
+        
+
+        .number-circle {
+
+            width: 70px;
+
+            height: 70px;
+
+            border: 3px solid #8b0000;
+
+            background: #fef9e7;
+
+            color: #8b0000;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 1.8rem;
+
+            font-weight: bold;
+
+        }
+
+        
+
+        .calculation-steps {
+
+            background: #facf7f;
+
+            border-left: 5px solid #8b0000;
+
+            border-right: 5px solid #8b0000;
+
+            padding: 25px;
+
+            margin: 20px 0;
+
+        }
+
+        
+
+        .calculation-steps h3 {
+
+            color: #8b0000;
+
+            margin-bottom: 15px;
+
+            font-weight: normal;
+
+            font-size: 1.5rem;
+
+        }
+
+        
+
+        .calculation-steps ol {
+
+            padding-left: 25px;
+
+        }
+
+        
+
+        .calculation-steps li {
+
+            margin-bottom: 10px;
+
+            line-height: 1.6;
+
+        }
+
+        
+
+        .calculation-steps ul {
+
+            margin-left: 20px;
+
+            margin-top: 10px;
+
+        }
+
+        
+
+        .tavola-info {
+
+            text-align: center;
+
+            margin: 20px 0;
+
+            padding: 20px;
+
+            background: #facf7f;
+
+            border: 2px solid #8b0000;
+
+        }
+
+        
+
+        .tavola-info h3 {
+
+            color: #8b0000;
+
+            margin-bottom: 10px;
+
+            font-weight: normal;
+
+            font-size: 1.5rem;
+
+        }
+
+        
+
+        .tavola-info p {
+
+            line-height: 1.6;
+
+        }
+
+        
+
+        .info-box {
+
+            background: #facf7f;
+
+            border-left: 5px solid #8b0000;
+
+            border-right: 5px solid #8b0000;
+
+            padding: 25px;
+
+            margin: 25px 0;
+
+        }
+
+        
+
+        .info-box h3 {
+
+            color: #8b0000;
+
+            margin-bottom: 15px;
+
+            font-weight: normal;
+
+            font-size: 1.5rem;
+
+        }
+
+        
+
+        .info-box p {
+
+            line-height: 1.8;
+
+        }
+
+        
+
+        strong {
+
+            color: #8b0000;
+
+            font-weight: bold;
+
+        }
+
+        
+
+        em {
+
+            font-style: italic;
+
+            color: #666;
+
+        }
+
+        
+
+        @media (max-width: 768px) {
+
+            .form-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            
+
+            .header h1 {
+
+                font-size: 2rem;
+
+            }
+
+            
+
+            .container {
+
+                padding: 20px;
+
+            }
+
+            
+
+            .number-circle {
+
+                width: 60px;
+
+                height: 60px;
+
+                font-size: 1.5rem;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+
+            <h1>Calcolatore per le Tavole di Rutilio Benincasa</h1>
+
+            <p>Utilizza le famose 19 tavole periodiche di Rutilio Benincasa per calcolare i numeri da giocare al Lotto.<br>
+
+            Sistema basato sui cicli astrali creati dall'astronomo cosentino nel 1552.</p>
+
+        </div>
+
+        
+
+        <div class="info-box">
+
+            <h3>Come Funziona il Metodo</h3>
+
+            <p><strong>Rutilio Benincasa</strong> (1555-1621) creò 19 tavole periodiche che si ripetono ogni 19 anni. 
+
+            Il metodo prevede di consultare la tavola corretta dell'anno in corso, prendere i 6 numeri del mese corrente, 
+
+            sommare a ciascuno il numero 9 più il giorno dell'estrazione, applicando la regola "fuori 90" se necessario.</p>
+
+        </div>
+
+        
+
+        <div class="calculator-section">
+
+            <h2>Calcolatore Interattivo</h2>
+
+            
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="anno">Anno Corrente:</label>
+
+                    <input type="number" id="anno" min="1555" max="2555" value="2025" required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="mese">Mese Corrente:</label>
+
+                    <select id="mese" required>
+
+                        <option value="">Seleziona mese</option>
+
+                        <option value="1">Gennaio</option>
+
+                        <option value="2">Febbraio</option>
+
+                        <option value="3">Marzo</option>
+
+                        <option value="4">Aprile</option>
+
+                        <option value="5">Maggio</option>
+
+                        <option value="6">Giugno</option>
+
+                        <option value="7">Luglio</option>
+
+                        <option value="8">Agosto</option>
+
+                        <option value="9">Settembre</option>
+
+                        <option value="10">Ottobre</option>
+
+                        <option value="11">Novembre</option>
+
+                        <option value="12">Dicembre</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="form-group">
+
+                <label for="giorno-estrazione">Giorno dell'Estrazione:</label>
+
+                <input type="number" id="giorno-estrazione" min="1" max="31" value="1" required>
+
+                <small>Inserisci il numero del giorno del mese in cui avviene l'estrazione (es: 15 per il 15 del mese)</small>
+
+            </div>
+
+            
+
+            <button class="calculate-btn" onclick="calcolaNumeri()">
+
+                Calcola Numeri di Rutilio
+
+            </button>
+
+        </div>
+
+        
+
+        <div class="results-section" id="results">
+
+            <h2>Risultati del Calcolo</h2>
+
+            <div id="results-content"></div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // Tavole complete di Rutilio Benincasa (19 tavole x 12 mesi)
+
+        const tavoleRutilio = {
+
+            // Tavola I
+
+            1: {
+
+                1: [36, 11, 58, 16, 98, 23], 2: [73, 85, 78, 2, 31, 17], 3: [79, 55, 3, 44, 1, 13],
+
+                4: [15, 9, 20, 39, 73, 10], 5: [84, 15, 83, 58, 38, 11], 6: [76, 77, 66, 71, 89, 56],
+
+                7: [61, 35, 36, 34, 11, 53], 8: [62, 26, 28, 65, 41, 13], 9: [38, 40, 17, 57, 10, 18],
+
+                10: [92, 46, 28, 47, 22, 74], 11: [32, 36, 84, 9, 16, 21], 12: [68, 74, 56, 51, 54, 22]
+
+            },
+
+            // Tavola II
+
+            2: {
+
+                1: [26, 46, 13, 45, 9, 74], 2: [88, 35, 14, 5, 39, 35], 3: [67, 64, 62, 18, 16, 3],
+
+                4: [59, 13, 80, 73, 54, 29], 5: [81, 75, 58, 69, 15, 24], 6: [73, 60, 15, 38, 22, 7],
+
+                7: [57, 17, 26, 81, 16, 39], 8: [44, 9, 43, 15, 3, 61], 9: [5, 18, 47, 11, 52, 4],
+
+                10: [3, 40, 61, 29, 17, 12], 11: [26, 4, 16, 21, 40, 38], 12: [31, 29, 53, 24, 33, 8]
+
+            },
+
+            // Tavola III
+
+            3: {
+
+                1: [53, 24, 44, 27, 11, 3], 2: [82, 18, 16, 30, 43, 21], 3: [79, 55, 3, 44, 1, 13],
+
+                4: [3, 13, 44, 22, 46, 28], 5: [69, 3, 76, 7, 11, 20], 6: [8, 23, 38, 21, 15, 36],
+
+                7: [13, 47, 11, 70, 44, 9], 8: [17, 45, 19, 47, 16, 32], 9: [61, 59, 55, 34, 15, 39],
+
+                10: [12, 16, 19, 83, 22, 9], 11: [75, 14, 83, 91, 46, 35], 12: [69, 4, 73, 13, 1, 20]
+
+            },
+
+            // Tavola IV
+
+            4: {
+
+                1: [4, 62, 47, 17, 27, 16], 2: [19, 15, 31, 52, 57, 35], 3: [67, 86, 7, 55, 27, 90],
+
+                4: [73, 7, 74, 59, 8, 2], 5: [39, 61, 23, 7, 16, 24], 6: [6, 5, 13, 34, 26, 83],
+
+                7: [27, 15, 24, 37, 79, 2], 8: [5, 53, 71, 46, 55, 60], 9: [47, 7, 81, 42, 41, 57],
+
+                10: [4, 11, 19, 72, 52, 12], 11: [69, 77, 41, 13, 59, 11], 12: [71, 70, 15, 38, 77, 4]
+
+            },
+
+            // Tavola V
+
+            5: {
+
+                1: [11, 38, 37, 72, 44, 23], 2: [17, 23, 16, 48, 13, 29], 3: [10, 79, 51, 76, 24, 31],
+
+                4: [30, 17, 24, 81, 39, 15], 5: [5, 32, 11, 22, 26, 40], 6: [13, 24, 34, 56, 11, 39],
+
+                7: [6, 66, 55, 10, 28, 90], 8: [15, 44, 31, 43, 26, 49], 9: [57, 16, 25, 90, 28, 12],
+
+                10: [80, 86, 72, 48, 15, 11], 11: [70, 78, 74, 45, 59, 73], 12: [70, 47, 52, 16, 48, 23]
+
+            },
+
+            // Tavola VI
+
+            6: {
+
+                1: [34, 16, 7, 49, 19, 36], 2: [11, 72, 10, 71, 23, 29], 3: [7, 55, 30, 37, 16, 20],
+
+                4: [31, 4, 33, 10, 17, 85], 5: [5, 13, 24, 66, 33, 29], 6: [80, 7, 13, 5, 46, 23],
+
+                7: [71, 28, 41, 48, 56, 25], 8: [47, 15, 28, 61, 8, 66], 9: [11, 59, 56, 24, 12, 27],
+
+                10: [25, 41, 16, 34, 18, 9], 11: [19, 67, 37, 21, 62, 8], 12: [83, 85, 58, 12, 32, 6]
+
+            },
+
+            // Tavola VII
+
+            7: {
+
+                1: [27, 35, 17, 38, 53, 47], 2: [17, 50, 79, 48, 42, 37], 3: [61, 7, 34, 53, 9, 5],
+
+                4: [26, 6, 32, 68, 47, 13], 5: [17, 42, 83, 18, 57, 28], 6: [89, 15, 64, 36, 40, 15],
+
+                7: [16, 79, 19, 65, 44, 49], 8: [62, 73, 30, 15, 58, 18], 9: [66, 61, 9, 1, 25, 12],
+
+                10: [18, 24, 31, 47, 8, 19], 11: [3, 74, 69, 15, 27, 53], 12: [80, 5, 36, 37, 76, 67]
+
+            },
+
+            // Tavola VIII
+
+            8: {
+
+                1: [4, 13, 11, 26, 30, 37], 2: [26, 49, 15, 21, 86, 58], 3: [80, 53, 35, 46, 57, 72],
+
+                4: [70, 7, 2, 25, 34, 45], 5: [10, 85, 18, 41, 38, 21], 6: [15, 81, 72, 48, 27, 51],
+
+                7: [48, 21, 36, 27, 26, 29], 8: [5, 11, 8, 2, 6, 3], 9: [22, 7, 4, 59, 24, 28],
+
+                10: [88, 41, 52, 32, 37, 39], 11: [1, 15, 24, 31, 59, 19], 12: [80, 46, 57, 59, 26, 4]
+
+            },
+
+            // Tavola IX
+
+            9: {
+
+                1: [25, 7, 49, 10, 69, 65], 2: [3, 59, 15, 38, 56, 13], 3: [6, 7, 4, 11, 47, 60],
+
+                4: [70, 2, 35, 45, 15, 64], 5: [14, 53, 27, 17, 89, 61], 6: [6, 13, 81, 48, 87, 59],
+
+                7: [17, 56, 37, 24, 25, 27], 8: [20, 3, 11, 55, 15, 68], 9: [12, 41, 19, 28, 5, 39],
+
+                10: [42, 20, 16, 35, 86, 6], 11: [12, 24, 42, 17, 7, 68], 12: [43, 8, 39, 4, 2, 6]
+
+            },
+
+            // Tavola X
+
+            10: {
+
+                1: [10, 47, 44, 35, 21, 79], 2: [38, 17, 11, 56, 18, 46], 3: [9, 47, 61, 35, 31, 10],
+
+                4: [74, 81, 71, 15, 24, 79], 5: [5, 28, 13, 50, 15, 38], 6: [17, 34, 15, 28, 63, 56],
+
+                7: [34, 11, 26, 18, 16, 46], 8: [89, 19, 23, 11, 60, 56], 9: [66, 41, 15, 28, 68, 60],
+
+                10: [21, 17, 10, 14, 81, 25], 11: [80, 5, 50, 75, 14, 87], 12: [36, 41, 11, 15, 14, 85]
+
+            },
+
+            // Tavola XI
+
+            11: {
+
+                1: [1, 5, 8, 7, 20, 34], 2: [40, 18, 2, 12, 26, 81], 3: [9, 15, 52, 24, 19, 39],
+
+                4: [2, 30, 20, 7, 24, 18], 5: [24, 36, 42, 11, 40, 3], 6: [32, 40, 56, 7, 15, 39],
+
+                7: [4, 80, 35, 59, 12, 27], 8: [9, 28, 31, 24, 61, 76], 9: [55, 23, 4, 29, 84, 2],
+
+                10: [46, 73, 8, 24, 18, 16], 11: [7, 12, 42, 45, 60, 51], 12: [15, 28, 17, 1, 57, 45]
+
+            },
+
+            // Tavola XII
+
+            12: {
+
+                1: [55, 56, 48, 13, 35, 29], 2: [51, 45, 16, 64, 38, 12], 3: [18, 57, 46, 16, 21, 13],
+
+                4: [17, 40, 29, 28, 27, 39], 5: [57, 28, 15, 43, 39, 4], 6: [11, 25, 46, 71, 54, 16],
+
+                7: [8, 45, 16, 19, 43, 2], 8: [17, 44, 52, 40, 24, 83], 9: [2, 5, 9, 17, 21, 38],
+
+                10: [32, 19, 46, 12, 24, 4], 11: [29, 54, 43, 40, 50, 51], 12: [46, 37, 43, 15, 70, 80]
+
+            },
+
+            // Tavola XIII
+
+            13: {
+
+                1: [27, 54, 64, 31, 42, 45], 2: [17, 10, 46, 34, 11, 28], 3: [49, 57, 62, 79, 87, 25],
+
+                4: [13, 73, 4, 18, 21, 15], 5: [4, 10, 76, 65, 79, 34], 6: [28, 45, 56, 13, 30, 9],
+
+                7: [74, 14, 70, 16, 71, 19], 8: [6, 5, 86, 15, 48, 17], 9: [2, 11, 27, 13, 32, 31],
+
+                10: [21, 19, 56, 15, 85, 60], 11: [1, 9, 25, 58, 73, 82], 12: [47, 10, 20, 59, 71, 70]
+
+            },
+
+            // Tavola XIV
+
+            14: {
+
+                1: [39, 10, 15, 31, 28, 29], 2: [17, 25, 13, 55, 72, 19], 3: [70, 38, 15, 22, 58, 51],
+
+                4: [1, 93, 62, 16, 73, 12], 5: [23, 54, 18, 29, 17, 46], 6: [89, 22, 15, 76, 66, 4],
+
+                7: [28, 12, 14, 64, 24, 77], 8: [35, 37, 24, 59, 79, 83], 9: [55, 29, 46, 34, 61, 45],
+
+                10: [47, 11, 23, 56, 75, 38], 11: [45, 79, 16, 59, 84, 85], 12: [81, 8, 34, 19, 88, 66]
+
+            },
+
+            // Tavola XV
+
+            15: {
+
+                1: [29, 35, 53, 32, 28, 73], 2: [6, 5, 8, 2, 3, 1], 3: [36, 93, 35, 19, 53, 65],
+
+                4: [55, 34, 10, 59, 21, 37], 5: [80, 29, 69, 12, 66, 45], 6: [35, 43, 20, 13, 37, 31],
+
+                7: [1, 3, 5, 4, 6, 2], 8: [17, 24, 33, 64, 34, 62], 9: [17, 24, 33, 20, 27, 34],
+
+                10: [33, 3, 25, 42, 58, 57], 11: [8, 6, 4, 3, 5, 1], 12: [5, 42, 49, 2, 15, 50]
+
+            },
+
+            // Tavola XVI
+
+            16: {
+
+                1: [17, 35, 15, 52, 75, 40], 2: [10, 71, 84, 41, 55, 61], 3: [19, 6, 4, 50, 35, 1],
+
+                4: [8, 37, 35, 31, 4, 18], 5: [86, 34, 50, 63, 15, 23], 6: [18, 5, 27, 37, 81, 50],
+
+                7: [14, 18, 56, 19, 13, 27], 8: [18, 56, 45, 29, 88, 74], 9: [58, 14, 7, 17, 13, 15],
+
+                10: [89, 4, 19, 75, 80, 51], 11: [31, 45, 27, 14, 18, 73], 12: [18, 15, 38, 14, 57, 83]
+
+            },
+
+            // Tavola XVII
+
+            17: {
+
+                1: [13, 15, 33, 72, 6, 68], 2: [33, 13, 37, 19, 3, 42], 3: [91, 24, 11, 58, 32, 67],
+
+                4: [42, 7, 87, 94, 22, 12], 5: [8, 22, 2, 59, 15, 65], 6: [93, 39, 53, 67, 11, 21],
+
+                7: [22, 36, 12, 48, 23, 24], 8: [25, 11, 43, 31, 88, 41], 9: [4, 17, 27, 35, 39, 38],
+
+                10: [2, 40, 21, 73, 85, 15], 11: [5, 15, 54, 18, 21, 70], 12: [17, 37, 32, 51, 62, 75]
+
+            },
+
+            // Tavola XVIII
+
+            18: {
+
+                1: [11, 19, 24, 15, 10, 44], 2: [82, 12, 34, 13, 21, 47], 3: [19, 24, 18, 52, 32, 67],
+
+                4: [23, 52, 39, 74, 27, 43], 5: [24, 27, 43, 7, 21, 80], 6: [8, 52, 14, 48, 32, 15],
+
+                7: [52, 31, 47, 21, 74, 5], 8: [51, 25, 17, 20, 45, 21], 9: [34, 28, 47, 9, 52, 23],
+
+                10: [2, 7, 49, 15, 48, 59], 11: [8, 33, 22, 47, 59, 23], 12: [52, 47, 45, 44, 68, 80]
+
+            },
+
+            // Tavola XIX
+
+            19: {
+
+                1: [73, 20, 18, 61, 21, 13], 2: [19, 12, 76, 39, 58, 48], 3: [45, 51, 36, 27, 11, 60],
+
+                4: [23, 16, 41, 18, 27, 11], 5: [9, 32, 79, 51, 24, 4], 6: [41, 29, 20, 37, 70, 8],
+
+                7: [59, 15, 77, 49, 25, 6], 8: [74, 21, 8, 5, 3, 39], 9: [5, 32, 22, 76, 24, 40],
+
+                10: [11, 59, 56, 24, 27, 8], 11: [19, 67, 37, 21, 62, 15], 12: [71, 47, 15, 48, 12, 26]
+
+            }
+
+        };
+
+        // Nomi dei mesi
+
+        const nomiMesi = {
+
+            1: 'Gennaio', 2: 'Febbraio', 3: 'Marzo', 4: 'Aprile', 5: 'Maggio', 6: 'Giugno',
+
+            7: 'Luglio', 8: 'Agosto', 9: 'Settembre', 10: 'Ottobre', 11: 'Novembre', 12: 'Dicembre'
+
+        };
+
+        function calcolaTavolaCorrente(anno) {
+
+            // Calcola quale delle 19 tavole utilizzare: (Anno - 1551) ÷ 19
+
+            // Se il resto è 0, si usa la tavola XIX (19)
+
+            const differenzaAnni = anno - 1551;
+
+            const resto = differenzaAnni % 19;
+
+            return resto === 0 ? 19 : resto;
+
+        }
+
+        function applicaFuori90(numero) {
+
+            if (numero <= 90) return numero;
+
+            if (numero <= 99) return numero - 90;
+
+            // Per numeri a 3+ cifre, togli l'ultima cifra
+
+            return Math.floor(numero / 10);
+
+        }
+
+        function calcolaNumeri() {
+
+            // Prendi i valori dal form
+
+            const anno = parseInt(document.getElementById('anno').value);
+
+            const mese = parseInt(document.getElementById('mese').value);
+
+            const giornoEstrazione = parseInt(document.getElementById('giorno-estrazione').value);
+
+            // Validazione input
+
+            if (!anno || !mese || !giornoEstrazione) {
+
+                alert('Compila tutti i campi!');
+
+                return;
+
+            }
+
+            if (giornoEstrazione < 1 || giornoEstrazione > 31) {
+
+                alert('Il giorno dell\'estrazione deve essere compreso tra 1 e 31!');
+
+                return;
+
+            }
+
+            // Calcola quale tavola utilizzare
+
+            const tavolaCorrente = calcolaTavolaCorrente(anno);
+
+            // Ottieni i 6 numeri base dalla tavola del mese corrente
+
+            const numeriBase = tavoleRutilio[tavolaCorrente][mese];
+
+            if (!numeriBase) {
+
+                alert('Errore: tavola o mese non trovato!');
+
+                return;
+
+            }
+
+            // Applica la formula: ogni numero base + 9 + giorno dell'estrazione
+
+            const sommaDaAggiungere = 9 + giornoEstrazione;
+
+            const numeriCalcolati = numeriBase.map(numero => numero + sommaDaAggiungere);
+
+            
+
+            // Applica il "fuori 90" ai risultati
+
+            const numeriFinali = numeriCalcolati.map(n => applicaFuori90(n));
+
+            // Mostra i risultati
+
+            mostraRisultati({
+
+                anno,
+
+                mese,
+
+                giornoEstrazione,
+
+                tavolaCorrente,
+
+                numeriBase,
+
+                sommaDaAggiungere,
+
+                numeriCalcolati,
+
+                numeriFinali
+
+            });
+
+        }
+
+        function mostraRisultati(dati) {
+
+            const resultsContent = document.getElementById('results-content');
+
+            
+
+            resultsContent.innerHTML = `
+
+                <div class="tavola-info">
+
+                    <h3>Numeri Calcolati per ${nomiMesi[dati.mese]} ${dati.anno}</h3>
+
+                    <p>Utilizzando la Tavola ${dati.tavolaCorrente} di Rutilio Benincasa</p>
+
+                    <p><strong>Giorno dell'estrazione:</strong> ${dati.giornoEstrazione}</p>
+
+                </div>
+
+                <div class="result-card">
+
+                    <h3>Numeri da Giocare</h3>
+
+                    <div class="result-numbers">
+
+                        ${dati.numeriFinali.map(num => `<div class="number-circle">${num}</div>`).join('')}
+
+                    </div>
+
+                    <p style="text-align: center; color: #666; margin-top: 15px;">
+
+                        <em>Numeri calcolati secondo il metodo autentico di Rutilio Benincasa</em>
+
+                    </p>
+
+                </div>
+
+                <div class="calculation-steps">
+
+                    <h3>Dettagli del Calcolo</h3>
+
+                    <ol>
+
+                        <li><strong>Anno considerato:</strong> ${dati.anno} → Tavola ${dati.tavolaCorrente}</li>
+
+                        <li><strong>Formula tavola:</strong> (${dati.anno} - 1551) ÷ 19 = resto ${(dati.anno - 1551) % 19 === 0 ? 'zero (Tavola XIX)' : (dati.anno - 1551) % 19}</li>
+
+                        <li><strong>Mese corrente:</strong> ${nomiMesi[dati.mese]} → numeri base: [${dati.numeriBase.join(', ')}]</li>
+
+                        <li><strong>Giorno dell'estrazione:</strong> ${dati.giornoEstrazione}</li>
+
+                        <li><strong>Formula calcolo:</strong> Numero base + 9 + ${dati.giornoEstrazione} = Numero base + ${dati.sommaDaAggiungere}</li>
+
+                        <li><strong>Calcoli effettuati:</strong></li>
+
+                        <ul style="margin-left: 20px; margin-top: 10px;">
+
+                            ${dati.numeriBase.map((base, index) => 
+
+                                `<li>${base} + ${dati.sommaDaAggiungere} = ${dati.numeriCalcolati[index]}${dati.numeriCalcolati[index] > 90 ? ` → ${dati.numeriFinali[index]} (fuori 90)` : ''}</li>`
+
+                            ).join('')}
+
+                        </ul>
+
+                        <li><strong>Risultato finale:</strong> [${dati.numeriFinali.join(', ')}]</li>
+
+                    </ol>
+
+                </div>
+
+                <div class="info-box">
+
+                    <h3>Importante</h3>
+
+                    <p>Questo calcolatore implementa il metodo autentico delle 19 Tavole di Rutilio Benincasa (1555-1621). 
+
+                    Il calcolo si basa sulla formula originale: numeri della tavola dell'anno corrente + 9 + giorno dell'estrazione, 
+
+                    con applicazione della regola "fuori 90". Il gioco del Lotto è un gioco di fortuna e nessun metodo può 
+
+                    garantire vincite. Gioca sempre responsabilmente!</p>
+
+                </div>
+
+            `;
+
+            const resultsSection = document.getElementById('results');
+
+            resultsSection.classList.add('show');
+
+            resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        }
+
+        // Imposta il mese e l'anno corrente di default
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const oggi = new Date();
+
+            document.getElementById('anno').value = oggi.getFullYear();
+
+            document.getElementById('mese').value = oggi.getMonth() + 1;
+
+        });
+
+    </script>
+
+</body>
+
+</html>
