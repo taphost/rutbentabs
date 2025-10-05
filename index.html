@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tavole di Rutilio Benincasa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>TAVOLE DI RUTILIO BENINCASA</h1>
+            <p>Utilizza le famose 19 tavole periodiche di Rutilio Benincasa per calcolare i numeri da giocare al Lotto.<br>
+            Sistema basato sui cicli astrali creati dall'astronomo cosentino nel 1552.</p>
+            
+            <img src="img/sole.png" alt="sole" class="header-icon">
+            <img src="img/omou.png" alt="omou" class="header-icon">
+            <img src="img/mano.png" alt="mano" class="header-icon">
+            <img src="img/uomo.png" alt="uomo" class="header-icon">
+            <img src="img/luna.png" alt="luna" class="header-icon">
+        </header>
+        
+        <div class="info-box">
+            <h3>Come Funziona il Metodo</h3>
+            <p><strong>Rutilio Benincasa</strong> (1555-1621) creò 19 tavole periodiche che si ripetono ogni 19 anni. 
+            Il metodo prevede di consultare la tavola corretta dell'anno in corso, prendere i 6 numeri del mese corrente, 
+            sommare a ciascuno il numero 9 più il giorno dell'estrazione, applicando la regola "fuori 90" se necessario.</p>
+        </div>
+        
+        <section class="calculator-section">
+            <h2>Calcolatore Interattivo</h2>
+            
+            <div class="form-row-date">
+                <div class="form-group">
+                    <label for="giorno-estrazione">Giorno:</label>
+                    <input type="number" id="giorno-estrazione" min="1" max="31" value="01" required>
+                </div>
+                <div class="form-group">
+                    <label for="mese">Mese:</label>
+                    <select id="mese" required>
+                        <option value="">Seleziona</option>
+                        <option value="1">Gennaio</option>
+                        <option value="2">Febbraio</option>
+                        <option value="3">Marzo</option>
+                        <option value="4">Aprile</option>
+                        <option value="5">Maggio</option>
+                        <option value="6">Giugno</option>
+                        <option value="7">Luglio</option>
+                        <option value="8">Agosto</option>
+                        <option value="9">Settembre</option>
+                        <option value="10">Ottobre</option>
+                        <option value="11">Novembre</option>
+                        <option value="12">Dicembre</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="anno">Anno:</label>
+                    <input type="number" id="anno" min="1555" max="2555" value="2025" required>
+                </div>
+            </div>
+            
+            <div class="form-info">
+                <small>Inserisci la data dell'estrazione</small>
+            </div>
+            <div id="error-container" class="error-message" style="display: none;"></div>
+            
+            <div class="info-box info-box-margin">
+                <h3>Calendario Giuliano vs Gregoriano</h3>
+                <p>Le Tavole di Rutilio Benincasa furono create nel 1552 con il <strong>Calendario Giuliano</strong>. La riforma gregoriana del 1582 ha introdotto una differenza di giorni che aumenta nel tempo. Attualmente è di <strong>13 giorni</strong>, ma diventerà di 14 giorni dal 2100, 15 dal 2200 e così via.</p>
+                
+                <div class="giuliano-box">
+                    <label class="giuliano-label">
+                        <input type="checkbox" id="usa-giuliano" class="giuliano-checkbox">
+                        <span><strong>Usa il Calendario Giuliano originale</strong> (sottrae i giorni corretti alla data)</span>
+                    </label>
+                    <p class="giuliano-description">
+                        Attivando questa opzione, il calcolo userà la data giuliana corrispondente, calcolando la differenza di giorni in base all'anno inserito.
+                    </p>
+                </div>
+            </div>
+            
+            <button class="calculate-btn" id="calcola-btn">
+                Calcola Numeri di Rutilio
+            </button>
+        </section>
+        
+        <section class="results-section" id="results">
+            <h2>Risultati del Calcolo</h2>
+            <div id="results-content"></div>
+        </section>
+    </div>
+
+    <script src="tavole-data.js"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>
