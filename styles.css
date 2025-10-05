@@ -155,11 +155,11 @@ body {
     animation: float-vertical 3s ease-in-out infinite;
 }
 
-.header-icon.sole { background-image: url('img/sole.png'); }
-.header-icon.omou { background-image: url('img/omou.png'); }
-.header-icon.mano { background-image: url('img/mano.png'); }
-.header-icon.uomo { background-image: url('img/uomo.png'); }
-.header-icon.luna { background-image: url('img/luna.png'); }
+.header-icon.sole { background-image: url('imgs/sole.png'); }
+.header-icon.omou { background-image: url('imgs/omou.png'); }
+.header-icon.mano { background-image: url('imgs/mano.png'); }
+.header-icon.uomo { background-image: url('imgs/uomo.png'); }
+.header-icon.luna { background-image: url('imgs/luna.png'); }
 
 
 .header h1 {
@@ -516,7 +516,7 @@ input[type="checkbox"]:checked::after {
     color: var(--btn-text);
     padding: 20px 40px;
     border: 6px solid var(--border-color);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     z-index: 9999;
     animation: fadeInDown 2s ease-in-out forwards;
     font-family: 'Stamp Press', 'Times New Roman';
