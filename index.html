@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <svg style="display:none;">
+        <defs>
+            <filter id="noise">
+                <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="4" />
+                <feDisplacementMap in="SourceGraphic" scale="2" />
+            </filter>
+        </defs>
+    </svg>
     <div class="container">
         <header class="header">
             <h1>TAVOLE DI RUTILIO BENINCASA</h1>
@@ -88,12 +96,44 @@
         
         <section class="results-section" id="results">
             <h2>Risultati del Calcolo</h2>
-            <div id="results-content"></div>
+            <div id="results-content">
+                <div class="tavola-info" style="display: none;">
+                    <h3 id="result-header"></h3>
+                    <p id="result-tavola"></p>
+                    <p id="result-giorno-gregorian"></p>
+                    <div id="result-info-calendario"></div>
+                </div>
+                <div class="result-card" style="display: none;">
+                    <h3>Numeri da Giocare</h3>
+                    <div class="result-numbers" id="result-numbers"></div>
+                    <p class="result-card-footer">
+                        <em>Numeri calcolati secondo il metodo autentico di Rutilio Benincasa</em>
+                    </p>
+                </div>
+                <div class="calculation-steps" style="display: none;">
+                    <h3>Dettagli del Calcolo</h3>
+                    <ol>
+                        <li id="result-step-1"></li>
+                        <li id="result-step-2"></li>
+                        <li id="result-step-3"></li>
+                        <li id="result-step-4"></li>
+                        <li id="result-step-5"></li>
+                        <li id="result-step-6"></li>
+                        <li id="result-step-7"></li>
+                    </ol>
+                </div>
+                <div class="info-box" id="result-info-box" style="display: none;">
+                    <h3>Importante</h3>
+                    <p>Questo calcolatore implementa il metodo autentico delle 19 Tavole di Rutilio Benincasa (1555-1621). 
+                    Il calcolo si basa sulla formula originale. Il gioco del Lotto è un gioco di fortuna e nessun metodo può 
+                    garantire vincite. Gioca sempre responsabilmente!</p>
+                </div>
+            </div>
         </section>
     </div>
 
-    <script src="js/tavole-data.js"></script>
-    <script src="js/calculator.js"></script>
-    <script src="js/animation.js"></script>
+    <script src="tavole-data.js"></script>
+    <script src="calculator.js"></script>
+    <script src="animation.js"></script>
 </body>
 </html>
