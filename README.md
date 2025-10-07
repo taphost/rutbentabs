@@ -1,4 +1,4 @@
-# Tavole di Benincasa
+# Tavole di Rutilio Benincasa
 
 ![Version](https://img.shields.io/badge/version-1.0.0-yellow.svg)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg)
