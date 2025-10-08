@@ -2,7 +2,6 @@
 
 ![Version](https://img.shields.io/badge/version-1.0.0-yellow.svg)
 ![License](https://img.shields.io/badge/license-MIT-yellow.svg)
-![Security](https://img.shields.io/badge/security-cryptographic-orange.svg)
 
 Un'applicazione web per calcolare i numeri del Lotto utilizzando il metodo storico delle **19 Tavole di Rutilio Benincasa**, astronomo e matematico cosentino del XVI secolo.
 
