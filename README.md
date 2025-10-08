@@ -69,3 +69,8 @@ Questo è un progetto storico-culturale che implementa un metodo del 1552. Il gi
 ## 📜 Storia
 
 **Rutilio Benincasa** (1555-1621) fu un astronomo, matematico e astrologo italiano. Le sue tavole periodiche divennero celebri per l'applicazione ai calcoli numerici e furono utilizzate per secoli.
+
+## 📄 Licenza
+
+MIT License - Sentiti libero di usare e modificare per i tuoi progetti.
+
