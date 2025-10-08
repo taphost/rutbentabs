@@ -27,7 +27,7 @@ Il metodo di Benincasa si basa su cicli astrali di 19 anni. Per ogni anno esiste
 
 ```bash
 # Clona il repository
-git clone https://github.com/tuousername/tavole-benincasa.git
+git clone https://github.com/taphost/rutbentabs.git
 
 # Apri index.html nel browser
 ```
